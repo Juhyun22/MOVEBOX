@@ -12,4 +12,9 @@ public class TestController {
 	public String hello() {
 		return "Hello World!!";
 	}
+	
+	@RequestMapping("/testing")
+	public String jsptest() {
+		return "test/test";
+	}
 }
