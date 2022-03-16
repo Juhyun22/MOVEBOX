@@ -3,6 +3,10 @@
 	margin: 0 auto;
 }
 
+#userWrap {
+	background-color: #E0E0E0;
+}
+
 header {
 	height: 130px;
 }
@@ -23,6 +27,22 @@ header {
 
 .line {
 	border-right: 1px solid gray;
+}
+
+.user-contents {
+	width: 700px;
+	height: 800px;
+	margin: 0 auto;
+	background-color: white;
+}
+
+.btnCss {
+	background-color: #6667AB;
+	color: white;
+}
+
+.textCss {
+	color: #6667AB;
 }
 
 footer {

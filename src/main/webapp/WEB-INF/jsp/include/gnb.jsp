@@ -29,7 +29,7 @@
 			<nav>
 				<ul class="nav">
 					<li class="nav-item"><a href="#" class="nav-link nav-text-small">로그인</a></li>
-					<li class="nav-item"><a href="#" class="nav-link nav-text-small">회원가입</a></li>
+					<li class="nav-item"><a href="/user/sign_up_view" class="nav-link nav-text-small" title="회원가">회원가입</a></li>
 					<li class="nav-item"><a href="#" class="nav-link nav-text-small">빠른 예매</a></li>
 				</ul>
 			</nav>
