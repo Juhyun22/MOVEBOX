@@ -12,6 +12,24 @@
 			`loginId` = #{loginId}
 	</select>
 	
+	<select id="selectUserByLoginIdAndPassword" parameterType="map" resultType="com.movebox.user.model.User">
+		SELECT
+			`id`
+			, `loginId`
+			, `password`
+			, `name`
+			, `birth`
+			, `email`
+			, `profileImgPath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`user`
+		WHERE
+			`loginId` = #{loginId}
+			AND `password` = #{password}
+	</select>
+	
 	<insert id="insertUser" parameterType="map">
 		INSERT INTO `user`
 		(

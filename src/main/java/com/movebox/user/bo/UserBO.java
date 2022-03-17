@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.movebox.common.FileManagerService;
 import com.movebox.user.dao.UserDAO;
+import com.movebox.user.model.User;
 
 @Service
 public class UserBO {
@@ -32,5 +33,8 @@ public class UserBO {
 		return userDAO.insertUser(loginId, password, name, birth, email, imagePath);
 	}
 	
+	public User getUserByLoginIdAndPassword(String loginId, String password) {
+		return userDAO.selectUserByLoginIdAndPassword(loginId, password);
+	}
 	
 }
