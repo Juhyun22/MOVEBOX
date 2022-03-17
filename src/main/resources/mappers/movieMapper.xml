@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movebox.movie.dao.MovieDAO">
+	<insert id="insertMovie" parameterType="map">
+		INSERT INTO `movie`
+		(
+			`title`
+			, `director`
+			, `information`
+			, `openingDate`
+			, `movieImgPath`
+			, `runningTime`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{title}
+			, #{director}
+			, #{information}
+			, #{openingDate}
+			, #{movieImgPath}
+			, #{runningTime}
+			, NOW()
+			, NOW()
+		)	
+	</insert>
+	
+	<select id="selectMovie" resultType="com.movebox.movie.model.Movie">
+		SELECT
+			`id` 
+			, `title`
+			, `director`
+			, `information`
+			, `openingDate`
+			, `movieImgPath`
+			, `runningTime`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`movie`
+	</select>
+</mapper>

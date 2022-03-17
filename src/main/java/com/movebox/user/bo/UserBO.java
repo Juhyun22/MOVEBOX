@@ -21,12 +21,12 @@ public class UserBO {
 		return userDAO.existLoginId(loginId);
 	}
 	
-	public int insertUser(String loginId, String password, String name, String birth, String email, MultipartFile profileImg) {
+	public int insertUser(String loginId, String password, String name, String birth, String email, MultipartFile profileImgPath) {
 		String imagePath = null;
 		
-		if (profileImg != null) {  // 파일에 값이 있다면, 
+		if (profileImgPath != null) {  // 파일에 값이 있다면, 
 			// file manager service , input: MultipartFile, output: file path
-			imagePath = fileManager.saveFile(loginId, profileImg);
+			imagePath = fileManager.saveFile(loginId, profileImgPath);
 		}
 		
 		// insert DAO

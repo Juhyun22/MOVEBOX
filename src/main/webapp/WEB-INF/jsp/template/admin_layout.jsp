@@ -21,15 +21,12 @@
 </head>
 <body>
 	<div id="wrap">
-		<header class="bg-warning">
-			<jsp:include page="../include/gnb.jsp" />
+		<header>
+			<jsp:include page="../include/gnb_admin.jsp" />
 		</header>
-		<section class="contents bg-success">
+		<section class="contents bg-light">
 			<jsp:include page="../#{viewName}.jsp" />
 		</section>
-		<footer class="bg-light">
-			<jsp:include page="../include/footer.jsp" />
-		</footer>
 	</div>
 </body>
 </html>

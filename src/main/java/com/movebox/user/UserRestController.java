@@ -114,6 +114,7 @@ public class UserRestController {
 			result.put("errorMessage", "로그인이 되지 않았습니다. 다시 시도해주세요.");
 		}
 		
+		// result.put("userId", user.getId());
 		return result;
 	}
 }

@@ -151,7 +151,7 @@
 						(extension[extension.length - 1]) != 'jpeg' &&
 							(extension[extension.length - 1]) != 'png' &&
 								(extension[extension.length - 1]) != 'jpg' ) {
-				alert("이미지 파일만 업로드 할 수 있습니다.");
+				alert("gif, jpeg, png, jpg파일만 업로드 할 수 있습니다.");
 				$(this).val();  // 비워주어야 한다. 
 				$('#fileName').text('');
 				return;
