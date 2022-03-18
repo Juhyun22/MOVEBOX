@@ -42,4 +42,19 @@ public class FileManagerService {
 
 		return null;
 	}
+	
+	public void deleteFile(String imagePath) throws IOException {
+		// imagePath의  /images/image파일 이름/이미지이름에서     /images/를 제거한 path 실제 저장 경로를 붙힌다. 
+		// /Users/jyhyun/Desktop/6_spring_project/memo/memo_workspace/images/ 에서 /images/image파일 이름/이미지이름 두개 겹쳐서 하나 삭제해야함
+		Path path = Paths.get(FILE_UPLOAD_PATH + imagePath.replace("/images/", ""));
+		if (Files.exists(path) == true) {  // 이미지 파일이 있으면 삭제 
+			Files.delete(path);
+		}
+
+		// 디렉토리(폴더) 삭제 
+		path = path.getParent();
+		if (Files.exists(path)) {
+			Files.delete(path);
+		}
+	}
 }

@@ -29,10 +29,12 @@
 					<tr>
 						<th>${movieList.id}</th>
 						<td>
+							<a href="/admin/movie_detail_view?movieId=${movieList.id}" class="title text-dark">
 							<img src="${movieList.movieImgPath}" alt="포스터" width="30" height="40">
+							</a>
 						</td>
 						<td>
-							<a href="#">${movieList.title}</a>
+							<a href="/admin/movie_detail_view?movieId=${movieList.id}" class="title text-dark">${movieList.title}</a>
 						</td>
 						<td>${movieList.director}</td>
 						<td>${movieList.openingDate}</td>
@@ -43,8 +45,12 @@
 		
 		<!-- 이전, 다음 -->
 		<div class="d-flex justify-content-center">
-			<a href="#" class="go-front mr-2 text-dark">&lt;&lt;이전</a>
-			<a href="#" class="go-back text-dark">다음&gt;&gt;</a>
+			<c:if test="${prevId ne 0}">
+				<a href="/admin/movie_manage_view?prevId=${prevId}" class="go-front mr-2 text-dark">&lt;&lt;이전</a>
+			</c:if>
+			<c:if test="${nextId ne 0}">
+				<a href="/admin/movie_manage_view?nextId=${nextId}" class="go-back text-dark">다음&gt;&gt;</a>
+			</c:if>
 		</div>
 		
 		<div class="d-flex justify-content-end">

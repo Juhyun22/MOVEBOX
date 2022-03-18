@@ -18,6 +18,20 @@ public interface MovieDAO {
 			@Param("movieImgPath") String movieImgPath, 
 			@Param("runningTime") int runningTime);
 	
-	public List<Movie> selectMovie();
+	public Movie selectMovieById(int id);
+	
+	public List<Movie> selectMovieListByPrevIdAndNextId(
+			@Param("direction") String direction, 
+			@Param("standardId") Integer standardId, 
+			@Param("limit") int limit);
+	
+	public int updateMovieById(
+			@Param("id") int id, 
+			@Param("title") String title, 
+			@Param("director") String director, 
+			@Param("information") String information, 
+			@Param("openingDate") String openingDate,
+			@Param("movieImgPath") String movieImgPath, 
+			@Param("runningTime") int runningTime);
 	
 }

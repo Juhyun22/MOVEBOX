@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.movebox.movie.dao.MovieDAO">
 	<insert id="insertMovie" parameterType="map">
@@ -27,7 +28,7 @@
 		)	
 	</insert>
 	
-	<select id="selectMovie" resultType="com.movebox.movie.model.Movie">
+	<select id="selectMovieById" parameterType="int" resultType="com.movebox.movie.model.Movie">
 		SELECT
 			`id` 
 			, `title`
@@ -40,5 +41,62 @@
 			, `updatedAt`
 		FROM
 			`movie`
+		WHERE
+			`id` = #{id}
 	</select>
+	
+	<select id="selectMovieListByPrevIdAndNextId" parameterType="map" resultType="com.movebox.movie.model.Movie">
+		SELECT
+			`id` 
+			, `title`
+			, `director`
+			, `information`
+			, `openingDate`
+			, `movieImgPath`
+			, `runningTime`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`movie`
+		<!-- direction이 null이면 첫 페이지 -->
+		<if test="direction == null">
+		ORDER BY `id` DESC
+		</if>
+
+		<!-- direction이 next이면 다음 -->
+		<if test="direction == 'next'">
+			<![CDATA[
+			WHERE `id` < #{standardId}
+			]]>
+		ORDER BY `id` DESC
+		</if>
+
+		<!-- direction이 prev이면 이전 -->
+		<if test="direction == 'prev'">
+			<![CDATA[
+			WHERE `id` > #{standardId}
+			]]>
+			ORDER BY `id` ASC
+		</if>
+		
+		LIMIT ${limit}
+	</select>
+	
+	<update id="updateMovieById" parameterType="map">
+		UPDATE
+			`movie`
+		SET
+			`title` = #{title}
+			, `director` = #{director}
+			, `information` = #{information}
+			, `openingDate` = #{openingDate}
+			<!-- 있을 때만 수정 -->
+			<if test="movieImgPath != null">
+			, `movieImgPath` = #{movieImgPath}
+			</if>
+			, `runningTime` = #{runningTime}
+			, `updatedAt` = NOW()
+		WHERE
+			`id` = #{id}
+	</update>
 </mapper>
