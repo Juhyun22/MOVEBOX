@@ -34,4 +34,6 @@ public interface MovieDAO {
 			@Param("movieImgPath") String movieImgPath, 
 			@Param("runningTime") int runningTime);
 	
+	public int deleteMovieById(int id);
+	
 }

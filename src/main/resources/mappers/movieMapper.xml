@@ -99,4 +99,12 @@
 		WHERE
 			`id` = #{id}
 	</update>
+	
+	<delete id="deleteMovieById" parameterType="int">
+		DELETE
+		FROM 
+			`movie`
+		WHERE
+			`id` = #{id}
+	</delete>
 </mapper>

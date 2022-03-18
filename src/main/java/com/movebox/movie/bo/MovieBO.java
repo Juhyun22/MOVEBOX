@@ -24,6 +24,7 @@ public class MovieBO {
 	@Autowired
 	private FileManagerService fileManager;
 
+	// 영화 등록 
 	public int insertMovie(String title, String director, String information, String openingDate,
 			MultipartFile movieImgPath, int runningTime) {
 		String imagePath = null;
@@ -37,21 +38,24 @@ public class MovieBO {
 		return movieDAO.insertMovie(title, director, information, openingDate, imagePath, runningTime);
 	}
 	
+	// 영화 by id
 	public Movie getMovieById(int id) {
 		return movieDAO.selectMovieById(id);
 	}
 	
+	// 영화 리스트 by paging
 	public List<Movie> getMovieListByPrevIdAndNextId(String direction, Integer standardId, int limit) {
 		return movieDAO.selectMovieListByPrevIdAndNextId(direction, standardId, limit);
 	}
 	
+	// 영화 수정 
 	public int updateMovie(int id, String title, String director, String information, String openingDate,
 			MultipartFile movieImgPath, int runningTime) {
 		
 		// movieId에 해당하는 영화가 있는지 확인 
 		Movie movie = getMovieById(id);
 		if (movie == null) {  // 해당 영화가 존재하지 않음 
-			logger.error("[update movie] 수정할 영화가 존재하지 않습니다.");
+			logger.error("[update movie] 수정할 영화가 존재하지 않습니다." + id);
 			return 0; // 없음을 리턴
 		}
 		
@@ -66,7 +70,7 @@ public class MovieBO {
 				try {
 					fileManager.deleteFile(movie.getMovieImgPath());
 				} catch (IOException e) {
-					logger.error("[delete file] 영화 파일 이미지 삭제에 실패했습니다. {}", movie.getId());
+					logger.error("[delete movie file] 영화 파일 이미지 삭제에 실패했습니다. {}, {}", movie.getId(), movie.getMovieImgPath());
 				}
 			}
 		}
@@ -74,4 +78,33 @@ public class MovieBO {
 		// db에서 update
 		return movieDAO.updateMovieById(id, title, director, information, openingDate, imagePath, runningTime);
 	}
+	
+	// 영화 삭제 by id
+	public int deleteMovieById(int id) {
+		// 삭제하기 전에 영화 정보를 들고온다. (영화포스터) 
+		Movie movie = getMovieById(id);
+		
+		if (movie == null) {
+			logger.warn("[delete movie] 삭제할 영화가 존재하지 않습니다." + id);
+			return 0;
+		}
+		
+		// imagepath가 있을 경우 파일 삭제 
+		if (movie.getMovieImgPath() != null) {
+			// 기존 이미지 삭제 
+			try {
+				fileManager.deleteFile(movie.getMovieImgPath());
+			} catch (IOException e) {
+				logger.warn("[delete movie file] 영화 이미지 삭제 실패 {}, {}", movie.getId(), movie.getMovieImgPath());
+			}
+		}
+		
+		// db delete
+		return movieDAO.deleteMovieById(id);
+	}
 }
+
+
+
+
+

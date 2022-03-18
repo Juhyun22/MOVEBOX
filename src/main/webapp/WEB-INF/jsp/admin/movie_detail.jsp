@@ -65,7 +65,7 @@
 				<a href="/admin/movie_manage_view" class="btn btnCss" title="영화 목록">목록</a>
 				
 				<div>
-					<button type="button" id="deleteBtn" class="btn btn-danger mr-3">삭제</button>
+					<button type="button" id="deleteBtn" class="btn btn-danger mr-3" data-movie-id="${movie.id}">삭제</button>
 					<button type="button" id="updateBtn" class="btn btnCss" data-movie-id="${movie.id}">수정</button>
 				</div>
 			</div>
@@ -167,14 +167,32 @@
 					}
 				}
 				, error: function(e) {
-					alert("영화 수정에 실패하였습니다.");
+					alert("영화 수정에 실패하였습니다. 관리자에게 문의해주세요.");
 				}
 			});
 		});
 		
 		// delete
 		$('#deleteBtn').on('click', function(e) {
-			alert("have to do");
+			let movieId = $(this).data('movie-id');
+			
+			// AJAX - DELETE
+			$.ajax({
+				url: "/movie/delete"
+				, method: "DELETE"
+				, data: {"movieId":movieId}
+				, success: function(data) {
+					if (data.result = "success") {
+						alert("삭제 완료");
+						location.href="/admin/movie_manage_view";
+					} else {
+						alert(data.errorMessage);
+					}
+				}
+				, error: function(e) {
+					alert("영화를 삭제하는데 실패하였습니다. 관리자에게 문의해주세요.");
+				}
+			});
 		});
 	});
 </script>

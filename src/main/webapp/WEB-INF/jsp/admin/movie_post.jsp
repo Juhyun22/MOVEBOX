@@ -74,6 +74,11 @@
 				return;
 			}
 			
+			if (reg.test(file) == false) {
+				alert("파일은 한글이 들어가면 안됩니다.");
+				return;
+			}
+			
 			if (file != '') {  // 값이 있으면, 
 				let ext = file.split('.').pop().toLowerCase();
 				if ($.inArray(ext, ['gif','png','jpeg','jpg']) == -1) {
