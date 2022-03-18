@@ -13,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileManagerService {
 
 	public final static String FILE_UPLOAD_PATH = "/Users/jyhyun/Desktop/Project/workspace/images/";
+	
+	// private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public String saveFile(String userLoginId, MultipartFile file){
 		// 파일 디렉토리 경로의 예: bora_시간/파일이름.png
@@ -28,14 +30,18 @@ public class FileManagerService {
 
 		// upload file : byte단위로 업로드한다.
 		try {
+			String imgName = file.getOriginalFilename();
+			String[] imgNameArr = imgName.split("\\.");
+			imgName = userLoginId + "." + imgNameArr[imgNameArr.length - 1];
+					
 			byte[] bytes = file.getBytes();
-			Path path = Paths.get(filePath + file.getOriginalFilename()); // getOriginalFilename()은 input에 올릴 파일 명이다.(한글
+			Path path = Paths.get(filePath + imgName); // getOriginalFilename()은 input에 올릴 파일 명이다.(한글
 																			// X)
 			Files.write(path, bytes);
 
 			// 이미지 url을 리턴한다.(WebMvcConfig에서 매핑한 이미지 path)
 			// ex) http://localhost/images/image파일 이름/이미지이름
-			return "/images/" + directoryName + file.getOriginalFilename();
+			return "/images/" + directoryName + imgName;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

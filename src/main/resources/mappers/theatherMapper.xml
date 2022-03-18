@@ -3,6 +3,25 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.movebox.theather.dao.TheatherDAO">
+	<insert id="insertTheather" parameterType="map">
+		INSERT INTO `theather`
+		(
+			`name`
+			, `address`
+			, `number`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{name}
+			, #{address}
+			, #{number}
+			, NOW()
+			, NOW()
+		)
+	</insert>
+
 	<select id="selectTheatherList" resultType="com.movebox.theather.model.Theather">
 		SELECT 
 			`id`
@@ -14,4 +33,12 @@
 		FROM 
 			`theather`
 	</select>
+	
+	<delete id="deleteTheaterById" parameterType="int">
+		DELETE 
+		FROM
+			`theather`
+		WHERE
+			`id` = #{id}
+	</delete>
 </mapper>

@@ -13,8 +13,17 @@ public class TheatherBO {
 	
 	@Autowired
 	private TheatherDAO theatherDAO;
+	
+	public int insertTheather(String name, String address, String number) {
+		return theatherDAO.insertTheather(name, address, number);
+	}
 
 	public List<Theather> getTheatherList() {
 		return theatherDAO.selectTheatherList();
 	}
+	
+	public int deleteTheaterById(int id) {
+		return theatherDAO.deleteTheaterById(id);
+	}
+	
 }

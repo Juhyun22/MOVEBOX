@@ -2,8 +2,6 @@ package com.movebox.admin;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.movebox.admin.bo.AdminBO;
 import com.movebox.movie.model.Movie;
+import com.movebox.theather.model.Theather;
 
 @Controller
 @RequestMapping("/admin")
@@ -27,11 +26,10 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping("/movie_manage_view") 
-	public String movieManage(
+	public String movieManageView(
 			@RequestParam(value="prevId", required=false) Integer prevIdParam,
 			@RequestParam(value="nextId", required=false) Integer nextIdParam,
-			Model model,
-			HttpServletRequest request) {
+			Model model) {
 		
 		List<Movie> movieList = adminBO.getMovieListByPrevIdAndNextId(prevIdParam, nextIdParam);
 		
@@ -71,11 +69,39 @@ public class AdminController {
 			@RequestParam("movieId") int movieId,
 			Model model) {
 		
-		// get movieList
+		// get movieList by Id
 		Movie movie = adminBO.getMovieById(movieId);
 		
 		model.addAttribute("viewName", "admin/movie_detail");
 		model.addAttribute("movie", movie);
+		return "template/admin_layout";
+	}
+	
+	
+	@RequestMapping("/theather_manage_view")
+	public String theatherManageView(
+			Model model) {
+		
+		// get theatherList
+		List<Theather> theatherList = adminBO.getTheatherList();
+		
+		
+//		// get 
+//		List<Admin> admin = adminBO.generateTheatherListAndMovieAndMovieTime(movieId, theatherId);
+		
+		model.addAttribute("viewName", "admin/theather_list");
+		model.addAttribute("theatherList", theatherList);
+		return "template/admin_layout";
+	}
+	
+	/**
+	 * 극장 추가 view 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/theather_post_view")
+	public String theatherPostView(Model model) {
+		model.addAttribute("viewName", "admin/theather_post");
 		return "template/admin_layout";
 	}
 }

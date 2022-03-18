@@ -67,7 +67,7 @@ public class MovieRestController {
 
 		if (row < 1) {
 			result.put("result", "error");
-			result.put("errorMessage", "영화 저장이 되지 않았습니다.");
+			result.put("errorMessage", "영화 저장이 되지 않았습니다. 다시 시도해 주세요.");
 		}
 
 		return result;
@@ -118,7 +118,7 @@ public class MovieRestController {
 		
 		if (row < 1) {
 			result.put("result", "error");
-			result.put("errorMessage", "영화 수정이 되지 않았습니다.");
+			result.put("errorMessage", "영화 수정이 되지 않았습니다. 다시 시도해 주세요.");
 		}
 		
 		return result;
@@ -157,7 +157,7 @@ public class MovieRestController {
 		
 		if (row < 1) {
 			result.put("result", "error");
-			result.put("errorMessage", "삭제가 되지 않았습니다.");
+			result.put("errorMessage", "삭제가 되지 않았습니다. 다시 시도해 주세요.");
 		}
 		
 		return result;

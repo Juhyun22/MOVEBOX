@@ -9,7 +9,7 @@
 		</div>
 	</div>
 	
-	<!-- 영화 리스트 -->
+	<!-- 영화 값 받기 -->
 	<div class="d-flex justify-content-center pt-4">
 		<div class="col-10">
 			<div class="d-flex">
@@ -71,11 +71,6 @@
 			
 			if (file == '') {
 				alert("파일 등록은 필수입니다.");
-				return;
-			}
-			
-			if (reg.test(file) == false) {
-				alert("파일은 한글이 들어가면 안됩니다.");
 				return;
 			}
 			

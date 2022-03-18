@@ -45,7 +45,7 @@
 		
 		<!-- 이전, 다음 -->
 		<div class="d-flex justify-content-center">
-			<c:if test="${prevId ne 0}">
+			<c:if test="${prevId ne 0 || prevId ne null}">
 				<a href="/admin/movie_manage_view?prevId=${prevId}" class="go-front mr-2 text-dark">&lt;&lt;이전</a>
 			</c:if>
 			<c:if test="${nextId ne 0}">

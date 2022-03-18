@@ -22,7 +22,7 @@
 <body>
 	<div id="wrap">
 		<header>
-			<jsp:include page="../include/gnb_admin.jsp" />
+			<jsp:include page="../include/admin_gnb.jsp" />
 		</header>
 		<section class="contents bg-light">
 			<jsp:include page="../#{viewName}.jsp" />
