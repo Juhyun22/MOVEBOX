@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.movebox.admin.model.Admin;
+import com.movebox.event.bo.EventBO;
+import com.movebox.event.model.Event;
 import com.movebox.movie.bo.MovieBO;
 import com.movebox.movie.model.Movie;
 import com.movebox.movieTime.bo.MovieTimeBO;
@@ -26,6 +28,9 @@ public class AdminBO {
 	
 	@Autowired
 	private MovieTimeBO movieTimeBO;
+	
+	@Autowired
+	private EventBO eventBO;
 	
 	private static final int MOVIE_POST_MAX_SIZE = 10;
 	
@@ -85,5 +90,10 @@ public class AdminBO {
 		}
 		
 		return resultList;
+	}
+	
+	// 이벤트 리스트 
+	public List<Event> getEventList() {
+		return eventBO.getEventList();
 	}
 }

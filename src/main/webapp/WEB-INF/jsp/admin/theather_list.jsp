@@ -33,7 +33,7 @@
 						</td>
 						<td>${theatherList.address}</td>
 						<td>
-							<button type="button" id="deleteTheatherBtn" class="btn btn-danger" 
+							<button type="button" id="deleteTheatherBtn" class="deleteTheatherBtn btn btn-danger" 
 							data-theather-id="${theatherList.id}">삭제</button>
 						</td>
 					</tr>
@@ -48,35 +48,36 @@
 			</div>
 		
 		<div class="d-flex justify-content-end">
-			<a href="/admin/theather_post_view" id="addTheatherBtn" class="btn btnCss">극장추가</a>
+			<a href="/admin/theather_post_view" id="addTheatherBtn" class="btn btnCss">극장 추가</a>
 		</div>
 		</div>
 	</div>
 </div>
 
 <script>
-	// 극장 삭제 
-	$('#deleteTheatherBtn').on('click', function(e) {
-		alert("pp");
-		let theatherId = $(this).data('theather-id');
-		alert(theatherId);
-		
-		/* $.ajax({
-			url: "/theather/delete"
-			, method: "DELETE"
-			, data: {"theatherId":theatherId}
-			, success: function(data) {
-				if (data.result == "success") {
-					alert("삭제 성공");
-					location.reload();
-				} else {
-					alert(data.errorMessage);
+	$(document).ready(function() {
+		// 극장 삭제 
+		$('.deleteTheatherBtn').on('click', function(e) {
+			let theatherId = $(this).data('theather-id');
+			// alert(theatherId);
+			
+			$.ajax({
+				url: "/theather/delete"
+				, method: "DELETE"
+				, data: {"theatherId":theatherId}
+				, success: function(data) {
+					if (data.result == "success") {
+						alert("삭제 성공");
+						location.reload();
+					} else {
+						alert(data.errorMessage);
+					}
 				}
-			}
-			, error: function(e) {
-				alert("극장 삭제에 실패하였습니다.");
-			}
-		}); */
+				, error: function(e) {
+					alert("극장 삭제에 실패하였습니다.");
+				}
+			});
+		});
 	});
 </script>
 

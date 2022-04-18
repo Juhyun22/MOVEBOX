@@ -84,7 +84,7 @@ public class TheatherRestController {
 	 */
 	@DeleteMapping("/delete")
 	public Map<String, Object> deleteTheather(
-			@RequestParam("movieId") int movieId,
+			@RequestParam("theatherId") int theatherId,
 			HttpServletRequest request) {
 		
 		Map<String, Object> result = new HashMap<>();
@@ -105,7 +105,7 @@ public class TheatherRestController {
 		}
 		
 		// delete theather
-		int row = theatherBO.deleteTheaterById(movieId);
+		int row = theatherBO.deleteTheaterById(theatherId);
 		
 		if (row < 1) {
 			result.put("result", "error");

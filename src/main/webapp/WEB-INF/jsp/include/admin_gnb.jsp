@@ -26,7 +26,7 @@
 					<li class="nav-item"><a href="/admin/movie_manage_view" class="nav-link nav-text" title="영화관리">영화관리</a></li>
 					<li class="nav-item"><a href="/admin/theather_manage_view" class="nav-link nav-text">극장관리</a></li>
 					<li class="nav-item"><a href="#" class="nav-link nav-text">예매관리</a></li>
-					<li class="nav-item"><a href="#" class="nav-link nav-text">이벤트 관리</a></li>
+					<li class="nav-item"><a href="/admin/event_manage_view" class="nav-link nav-text">이벤트 관리</a></li>
 					<li class="nav-item"><a href="#" class="nav-link nav-text">스토어 관리</a></li>
 				</ul>
 			</nav>

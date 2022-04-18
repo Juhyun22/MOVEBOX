@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.movebox.admin.bo.AdminBO;
+import com.movebox.event.model.Event;
 import com.movebox.movie.model.Movie;
 import com.movebox.theather.model.Theather;
 
@@ -77,14 +78,17 @@ public class AdminController {
 		return "template/admin_layout";
 	}
 	
-	
+	/**
+	 * 극장 관리 view
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/theather_manage_view")
 	public String theatherManageView(
 			Model model) {
 		
 		// get theatherList
 		List<Theather> theatherList = adminBO.getTheatherList();
-		
 		
 //		// get 
 //		List<Admin> admin = adminBO.generateTheatherListAndMovieAndMovieTime(movieId, theatherId);
@@ -102,6 +106,32 @@ public class AdminController {
 	@RequestMapping("/theather_post_view")
 	public String theatherPostView(Model model) {
 		model.addAttribute("viewName", "admin/theather_post");
+		return "template/admin_layout";
+	}
+	
+	/**
+	 * 이벤트 관리 view 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/event_manage_view")
+	public String eventManageView(Model model) {
+		
+		List<Event> eventList = adminBO.getEventList();
+		
+		model.addAttribute("viewName", "admin/event_list");
+		model.addAttribute("eventList", eventList);
+		return "template/admin_layout";
+	}
+	
+	/**
+	 * 이벤트 추가 view 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/event_post_view")
+	public String eventPostView(Model model) {
+		model.addAttribute("viewName", "admin/event_post");
 		return "template/admin_layout";
 	}
 }
